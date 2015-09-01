@@ -9,12 +9,6 @@ if (Meteor.isClient) {
     Session.setDefaultPersistent('party', '');
 
   Template.body.helpers({
-    searchedFor: function () {
-      return Session.get('someStuff');
-    },
-    results: function (){
-      return Session.get('resultsStuff');
-    },
     district: function(){
       return Session.get('district');
     },
@@ -59,7 +53,7 @@ if (Meteor.isClient) {
             Session.setPersistent('lastName', lastName);
             Session.setPersistent('state', state);
             Session.setPersistent('party', party);
-            $('.name').append("<div> <button id = "+district+"> "+district+"</button> </td> <td> <h4>"+firstName+" "+lastName+ " ("+party+")</h4> </div>");
+            $('.name').append("<button  id = "+district+"> <div class=card blue-grey darken-1 id = "+district+"><div class=card-content id = "+district+"><div id = "+district+"> "+district+"<h4  id = "+district+">"+firstName+" "+lastName+ " ("+party+")</h4> </div></div></div> </button>");
           }
         }
         console.log(results);

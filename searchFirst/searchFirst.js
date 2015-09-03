@@ -107,14 +107,14 @@ if (Meteor.isClient) {
               var divTotal = [];
               for(n = 0; n <entityTotal.length; n++){
                 var hmmTotal = entityTotal[n]/eTotal;
+                var hmmWoo = (hmmTotal*100);
+                divTotal.push(hmmWoo);
+                console.log(hmmWoo);
               }
-              $('.bar').each(function(){
-                var index = $(this).index();
-                if(index < entityType.length){
-                  $(this).addClass('bar'+[index]+'');
-                  $('bar'+[index]+'').css("max-width")
-                }
-              });
+                for(i = 0; i<entityType.length; i++){
+                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+'</div>');
+                $('.bar'+i+'').css({"max-width": divTotal[i]+'%'})
+              }
 
               Session.setPersistent('entityTotal', entityTotal);
               Session.setPersistent('entityType', entityType);

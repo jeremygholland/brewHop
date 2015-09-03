@@ -2,14 +2,21 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s6">
+				<h3>Bills filed this Session</h3>
 				{{#each billStuff}}
-					<li><a href="{{this}}"> bills</a></li>
+					<li><a href="{{this}}"> Bill</a></li>
 				{{/each}}
 
 			</div>
 			<div class="col s6">
-				
-			</div>	
+			<h3>Committees</h3>
+			{{#each committees}}
+			<ul>
+				{{this}}
+			</ul>
+			{{/each}}
+			</div>
+
 			</div>
 	</div>
 </template>

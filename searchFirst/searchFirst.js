@@ -5,6 +5,7 @@ if (Meteor.isClient) {
     Session.setDefaultPersistent('id', null);
     Session.setDefaultPersistent('shortTitle', null);
     Session.setDefaultPersistent('billStuff', null);
+    Session.setDefaultPersistent('committees', null);
   // counter starts at 0
   Template.searchFirst.helpers({
     state: function(){
@@ -65,6 +66,14 @@ if (Meteor.isClient) {
                 Session.setPersistent('shortTitle', shortTitle);
                 }
               }
+            })
+      $.getJSON('http://congress.api.sunlightfoundation.com/committees?member_ids='+id+'&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function (json){
+              var committees = [];
+              for(w = 0; w<json.results.length; w++){
+                  committees.push(json.results[w].name);
+              }
+              console.log(committees);
+              Session.setPersistent('committees', committees);
             })
 
     });

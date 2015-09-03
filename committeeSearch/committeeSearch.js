@@ -7,6 +7,9 @@ if (Meteor.isClient) {
     },
     shortTitle: function(){ 
     return  Session.get('shortTitle');
+    },
+    committees: function(){
+      return Session.get('committees');
     }
   });
 

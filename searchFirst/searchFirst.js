@@ -103,12 +103,19 @@ if (Meteor.isClient) {
                 entityTotal.push(json[u].amount);
                  entityType.push(json[u].name);
               }
+              var eTotal = eval(entityTotal.join('+'));
+              var divTotal = [];
+              for(n = 0; n <entityTotal.length; n++){
+                var hmmTotal = entityTotal[n]/eTotal;
+              }
               $('.bar').each(function(){
                 var index = $(this).index();
                 if(index < entityType.length){
                   $(this).addClass('bar'+[index]+'');
+                  $('bar'+[index]+'').css("max-width")
                 }
               });
+
               Session.setPersistent('entityTotal', entityTotal);
               Session.setPersistent('entityType', entityType);
             })

@@ -99,10 +99,12 @@ if (Meteor.isClient) {
 
             $.getJSON('http://transparencydata.com/api/1.0/aggregates/pol/'+newID+'/contributors/industries.json?cycle=2014&limit=10&callback=?&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function (json){
               var entityTotal = [];
+              var entityMoney = [];
               var entityType = [];
               for(u = 0; u<json.length; u++){
                 entityTotal.push(json[u].amount);
                  entityType.push(json[u].name);
+                 entityMoney.push(accounting.formatMoney(json[u].amount));
               }
               var eTotal = eval(entityTotal.join('+'));
               var divTotal = [];
@@ -113,7 +115,7 @@ if (Meteor.isClient) {
                 console.log(hmmWoo);
               }
                 for(i = 0; i<entityType.length; i++){
-                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' <span class = "rightSide"> '+entityTotal[i]+'</span> </div>');
+                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' <span class = "rightSide"> '+entityMoney[i]+'</span> </div>');
                 $('body').append('<style> .bar'+i+'::after{max-width:'+divTotal[i]+'%}</style>')
               }
 

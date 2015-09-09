@@ -4,6 +4,7 @@ if (Meteor.isClient) {
       entityType: function(){
         return Session.get('entityType');
       }
+
     });
 
 

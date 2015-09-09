@@ -45,7 +45,8 @@ if (Meteor.isClient) {
 
     Template.searchFirst.events({
         'click button': function(event) {
-
+            $('html').find('style').remove();
+            $('.graph-cont').html('');
             var newSearch = (event.target.id);
             console.log(newSearch);
             var state = Session.get('state');
@@ -112,8 +113,8 @@ if (Meteor.isClient) {
                 console.log(hmmWoo);
               }
                 for(i = 0; i<entityType.length; i++){
-                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+'</div>');
-                $('.bar'+i+'').css({"max-width": divTotal[i]+'%'})
+                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' <span class = "rightSide"> '+entityTotal[i]+'</span> </div>');
+                $('body').append('<style> .bar'+i+'::after{max-width:'+divTotal[i]+'%}</style>')
               }
 
               Session.setPersistent('entityTotal', entityTotal);

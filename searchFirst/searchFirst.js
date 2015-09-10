@@ -140,8 +140,6 @@ if (Meteor.isClient) {
             $.getJSON('http://transparencydata.com/api/1.0/entities/'+newID+'.json?cycle=2014&callback=?&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function (json){
                 var hmm =json.totals['2014'].recipient_amount;
                 var hmmP = json.totals['2014'].recipient_count;
-                $scope.$storage.total = hmm;
-                $scope.$storage.hmmP = hmmP;
               });
           })
             });

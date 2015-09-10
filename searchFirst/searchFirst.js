@@ -9,6 +9,7 @@ if (Meteor.isClient) {
     Session.setDefaultPersistent('entityType', null);
     Session.setDefaultPersistent('contribNames', null);
     Session.setDefaultPersistent('contribTotals', null);
+    Session.setDefaultPersistent('totalMoney', null);
     // counter starts at 0
     Template.searchFirst.helpers({
         state: function() {
@@ -107,18 +108,26 @@ if (Meteor.isClient) {
                  entityMoney.push(accounting.formatMoney(json[u].amount));
               }
               var eTotal = eval(entityTotal.join('+'));
+              var totalMoney = accounting.formatMoney(eTotal);
               var divTotal = [];
+              var percentTotal = [];
               for(n = 0; n <entityTotal.length; n++){
                 var hmmTotal = entityTotal[n]/eTotal;
-                var hmmWoo = (hmmTotal*100);
+                if(hmmTotal.length>3){
+                hmmTotal.substring(0,3);
+                }
+                var percentStuff = hmmTotal*100
+                percentTotal.push(percentStuff.toFixed(2));
+                var hmmWoo = (hmmTotal*250);
                 divTotal.push(hmmWoo);
                 console.log(hmmWoo);
               }
                 for(i = 0; i<entityType.length; i++){
-                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' <span class = "rightSide"> '+entityMoney[i]+'</span> </div>');
+                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' '+ percentTotal[i]+'% <span class = "rightSide right"> '+entityMoney[i]+'</span> </div>');
                 $('body').append('<style> .bar'+i+'::after{max-width:'+divTotal[i]+'%}</style>')
               }
 
+              Session.setPersistent('totalMoney', totalMoney);
               Session.setPersistent('entityTotal', entityTotal);
               Session.setPersistent('entityType', entityType);
             })

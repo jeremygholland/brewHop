@@ -3,6 +3,9 @@ if (Meteor.isClient) {
     Template.money.helpers({
       entityType: function(){
         return Session.get('entityType');
+      },
+      totalMoney: function(){
+        return Session.get('totalMoney');
       }
 
     });

@@ -10,10 +10,14 @@ if (Meteor.isClient) {
     Session.setDefaultPersistent('contribNames', null);
     Session.setDefaultPersistent('contribTotals', null);
     Session.setDefaultPersistent('totalMoney', null);
+    Session.setDefaultPersistent('firstSearchName', true);
     // counter starts at 0
     Template.searchFirst.helpers({
         state: function() {
             return Session.get('state');
+        },
+        firstSearchName: function(){
+          return Session.get('firstSearchName');
         }
     });
 
@@ -46,6 +50,7 @@ if (Meteor.isClient) {
 
     Template.searchFirst.events({
         'click button': function(event) {
+            Session.setPersistent('firstSearchName', false);
             $('html').find('style').remove();
             $('.graph-cont').html('');
             var newSearch = (event.target.id);

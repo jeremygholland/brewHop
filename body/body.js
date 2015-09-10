@@ -53,6 +53,7 @@ if (Meteor.isClient) {
             Session.setPersistent('lastName', lastName);
             Session.setPersistent('state', state);
             Session.setPersistent('party', party);
+            Session.setPersistent('firstSearchName', true);
             $('.name').append("<button class =theseCards id = "+district+"> <div class=card blue-grey darken-1 id = "+district+"><div class=card-content id = "+district+"><div id = "+district+"><h4  id = "+district+">"+firstName+" "+lastName+ " ("+party+")</h4> </div></div></div> </button>");
           }
         }

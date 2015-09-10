@@ -5,7 +5,7 @@ if (Meteor.isClient) {
     billStuff: function(){
       return Session.get('billStuff');
     },
-    shortTitle: function(){ 
+    shortTitle: function(){
     return  Session.get('shortTitle');
     },
     committees: function(){
@@ -14,7 +14,7 @@ if (Meteor.isClient) {
   });
 
   Template.body.helpers({
- 
+
   });
 
   Template.committeeSearch.events({

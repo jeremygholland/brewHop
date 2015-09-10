@@ -11,9 +11,18 @@ if (Meteor.isClient) {
     });
 
 
-    Template.money.events({
+    Template.money.rendered = function(){
+      var entityType = Session.get('entityType');
+      var percentTotal = Session.get('percentTotal');
+      var entityMoney = Session.get('entityMoney');
+      var divTotal = Session.get('divTotal');
+      
+      for(i = 0; i<entityType.length; i++){
+      $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' '+ percentTotal[i]+'% <span class = "rightSide right"> '+entityMoney[i]+'</span> </div>');
+      $('body').append('<style> .bar'+i+'::after{max-width:'+divTotal[i]+'%}</style>')
+    }
 
-    });
+}
 }
 
 if (Meteor.isServer) {

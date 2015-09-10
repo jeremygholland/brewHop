@@ -11,6 +11,9 @@ if (Meteor.isClient) {
     Session.setDefaultPersistent('contribTotals', null);
     Session.setDefaultPersistent('totalMoney', null);
     Session.setDefaultPersistent('firstSearchName', true);
+    Session.setDefaultPersistent('divTotal', null);
+    Session.setDefaultPersistent('percentTotal', null);
+    Session.setDefaultPersistent('entityMoney', null);
     // counter starts at 0
     Template.searchFirst.helpers({
         state: function() {
@@ -127,13 +130,11 @@ if (Meteor.isClient) {
                 divTotal.push(hmmWoo);
                 console.log(hmmWoo);
               }
-                for(i = 0; i<entityType.length; i++){
-                $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' '+ percentTotal[i]+'% <span class = "rightSide right"> '+entityMoney[i]+'</span> </div>');
-                $('body').append('<style> .bar'+i+'::after{max-width:'+divTotal[i]+'%}</style>')
-              }
-
+              Session.setPersistent('divTotal', divTotal);
+              Session.setPersistent('percentTotal', percentTotal);
               Session.setPersistent('totalMoney', totalMoney);
               Session.setPersistent('entityTotal', entityTotal);
+              Session.setPersistent('entityMoney', entityMoney);
               Session.setPersistent('entityType', entityType);
             })
             $.getJSON('http://transparencydata.com/api/1.0/entities/'+newID+'.json?cycle=2014&callback=?&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function (json){

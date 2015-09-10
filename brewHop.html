@@ -13,12 +13,15 @@
       <a class = "brand-logo center titleName hide-on-med-and-down"> {{firsties}} {{lasties}} <span>({{party}})</span> {{state}} </a>
       <a class = "brand-logo left searchedFor searched4 hide-on-large-only"> GovTracks</a>
       <ul id="nav-mobile" class="right wooTry">
-
+          {{#if firstTime}}
         <li class = "tabThing">
             <form class = "test">
   				<input type="text" name = "test" placeholder="Please enter a zip code?"/>
 			</form>
 </li>
+    {{else}}
+      <li><a href="#" class = "newSearch">New Search?</a></li>
+    {{/if}}
         <li><a href="/bills">Legilslation</a></li>
         <li class = "right"><a href="/finances">Finances</a></li>
         <li class = "right"><a href="/contact">Contact</a></li>

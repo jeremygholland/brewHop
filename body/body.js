@@ -7,6 +7,7 @@ if (Meteor.isClient) {
     Session.setDefaultPersistent('lastName', '');
     Session.setDefaultPersistent('state', '')
     Session.setDefaultPersistent('party', '');
+    Session.setDefaultPersistent('firstTime', true);
 
   Template.body.helpers({
     district: function(){
@@ -20,6 +21,9 @@ if (Meteor.isClient) {
     },
     state: function(){
       return Session.get('state');
+    },
+    firstTime:function(){
+      return Session.get('firstTime')
     },
     party: function(){
       Session.get('party');
@@ -54,12 +58,16 @@ if (Meteor.isClient) {
             Session.setPersistent('state', state);
             Session.setPersistent('party', party);
             Session.setPersistent('firstSearchName', true);
+            Session.setPersistent('firstTime', false)
             $('.name').append("<button class =theseCards id = "+district+"> <div class=card blue-grey darken-1 id = "+district+"><div class=card-content id = "+district+"><div id = "+district+"><h4  id = "+district+">"+firstName+" "+lastName+ " ("+party+")</h4> </div></div></div> </button>");
           }
         }
         console.log(results);
       });
       event.target.test.value = '';
+    },
+    "click .newSearch": function(){
+      Session.setPersistent('firstTime', true);
     }
   });
 }

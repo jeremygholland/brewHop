@@ -68,11 +68,12 @@ if (Meteor.isClient) {
                 var twitterId = json.results[0].twitter_id;
                 var youtube_id = json.results[0].youtube_id;
                 var website = json.results[0].website;
+                var websiteShit =("<div><a href = "+website+"> click me</a></div>")
                 var lasties = json.results[0].last_name;
                 var id = json.results[0].bioguide_id;
                 Session.setPersistent('youtube', youtube_id);
                 Session.setPersistent('twitterId', twitterId);
-                Session.setPersistent('website', website);
+                Session.setPersistent('website', websiteShit);
                 Session.setPersistent('firsties', firsties);
                 Session.setPersistent('lasties', lasties);
                 Session.setPersistent('id', id);

@@ -38,9 +38,10 @@ if (Meteor.isClient) {
 
   Template.body.events({
     "submit .test": function (event) {
+      Session.setPersistent('firstSearchName', true);
+      console.log(Session.get('firstSearchName'));
       event.preventDefault();
       var search = event.target.test.value;
-      console.log(search);
       // increment the counter when button is clicked
       Session.setPersistent('someStuff', search);
       $.getJSON("http://congress.api.sunlightfoundation.com/legislators/locate?zip="+search+"&apikey=8b48c930d6bb4552be3b0e6248efb463").then(function (json){
@@ -52,17 +53,15 @@ if (Meteor.isClient) {
             var lastName = json.results[i].last_name;
             var state = json.results[i].state;
             var party = json.results[i].party;
+            $('.name').append("<button class =theseCards id = "+district+"> <div class=card blue-grey darken-1 id = "+district+"><div class=card-content id = "+district+"><div id = "+district+"><h4  id = "+district+">"+firstName+" "+lastName+ " ("+party+")</h4> </div></div></div> </button>");
             Session.setPersistent('district', district);
             Session.setPersistent('firstName', firstName);
             Session.setPersistent('lastName', lastName);
             Session.setPersistent('state', state);
             Session.setPersistent('party', party);
-            Session.setPersistent('firstSearchName', true);
-            Session.setPersistent('firstTime', false)
-            $('.name').append("<button class =theseCards id = "+district+"> <div class=card blue-grey darken-1 id = "+district+"><div class=card-content id = "+district+"><div id = "+district+"><h4  id = "+district+">"+firstName+" "+lastName+ " ("+party+")</h4> </div></div></div> </button>");
+            Router.go('/')
           }
         }
-        console.log(results);
       });
       event.target.test.value = '';
     },

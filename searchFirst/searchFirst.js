@@ -53,16 +53,16 @@ if (Meteor.isClient) {
 
     Template.searchFirst.events({
         'click button': function(event) {
-            Session.setPersistent('firstSearchName', false);
+          Session.setPersistent('firstSearchName', false);
+          Session.setPersistent('firstTime', false);
+          console.log(Session.get('firstSearchName'));
             $('html').find('style').remove();
             $('.graph-cont').html('');
             var newSearch = (event.target.id);
-            console.log(newSearch);
             var state = Session.get('state');
             $.getJSON('http://congress.api.sunlightfoundation.com/legislators?state=' + state + '&district=' + newSearch + '&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function(json) {
                 var firsties = json.results[0].first_name;
                 var lasties = json.results[0].last_name;
-                console.log(firsties);
                 var id = json.results[0].bioguide_id;
                 Session.setPersistent('firsties', firsties);
                 Session.setPersistent('lasties', lasties);
@@ -85,7 +85,6 @@ if (Meteor.isClient) {
                     for (w = 0; w < json.results.length; w++) {
                         committees.push(json.results[w].name);
                     }
-                    console.log(committees);
                     Session.setPersistent('committees', committees);
                 })
                   $.getJSON('http://transparencydata.com/api/1.0/entities.json?search='+firsties+'+'+lasties+'&callback=?&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function (json){
@@ -128,7 +127,6 @@ if (Meteor.isClient) {
                 percentTotal.push(percentStuff.toFixed(2));
                 var hmmWoo = (hmmTotal*250);
                 divTotal.push(hmmWoo);
-                console.log(hmmWoo);
               }
               Session.setPersistent('divTotal', divTotal);
               Session.setPersistent('percentTotal', percentTotal);
@@ -136,6 +134,7 @@ if (Meteor.isClient) {
               Session.setPersistent('entityTotal', entityTotal);
               Session.setPersistent('entityMoney', entityMoney);
               Session.setPersistent('entityType', entityType);
+                Session.setPersistent('firstSearchName', false);
             })
             $.getJSON('http://transparencydata.com/api/1.0/entities/'+newID+'.json?cycle=2014&callback=?&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function (json){
                 var hmm =json.totals['2014'].recipient_amount;

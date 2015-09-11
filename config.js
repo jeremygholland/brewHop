@@ -6,4 +6,7 @@ Router.route('/finances', function(){
 }),
 Router.route('/bills', function(){
 	this.render('committeeSearch');
+}),
+Router.route('/contact', function(){
+	this.render('contact');
 })

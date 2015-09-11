@@ -14,6 +14,9 @@ if (Meteor.isClient) {
     Session.setDefaultPersistent('divTotal', null);
     Session.setDefaultPersistent('percentTotal', null);
     Session.setDefaultPersistent('entityMoney', null);
+    Session.setDefaultPersistent('website', null);
+    Session.setDefaultPersistent('youtube', null);
+    Session.setDefaultPersistent('twitterId', null)
     // counter starts at 0
     Template.searchFirst.helpers({
         state: function() {
@@ -62,8 +65,14 @@ if (Meteor.isClient) {
             var state = Session.get('state');
             $.getJSON('http://congress.api.sunlightfoundation.com/legislators?state=' + state + '&district=' + newSearch + '&apikey=8b48c930d6bb4552be3b0e6248efb463').then(function(json) {
                 var firsties = json.results[0].first_name;
+                var twitterId = json.results[0].twitter_id;
+                var youtube_id = json.results[0].youtube_id;
+                var website = json.results[0].website;
                 var lasties = json.results[0].last_name;
                 var id = json.results[0].bioguide_id;
+                Session.setPersistent('youtube', youtube_id);
+                Session.setPersistent('twitterId', twitterId);
+                Session.setPersistent('website', website);
                 Session.setPersistent('firsties', firsties);
                 Session.setPersistent('lasties', lasties);
                 Session.setPersistent('id', id);

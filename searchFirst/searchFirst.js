@@ -70,9 +70,10 @@ if (Meteor.isClient) {
                 var website = json.results[0].website;
                 var websiteShit =("<div><a href = "+website+"> click me</a></div>")
                 var lasties = json.results[0].last_name;
+                var twitterShit = ('<a class="twitter-timeline"  data-widget-id="643187064733741056" href="https://twitter.com/'+twitterId+'" data-screen-name="'+twitterId+'">Tweets by @'+twitterId+'</a>');
                 var id = json.results[0].bioguide_id;
                 Session.setPersistent('youtube', youtube_id);
-                Session.setPersistent('twitterId', twitterId);
+                Session.setPersistent('twitterId', twitterShit);
                 Session.setPersistent('website', websiteShit);
                 Session.setPersistent('firsties', firsties);
                 Session.setPersistent('lasties', lasties);

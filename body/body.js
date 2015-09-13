@@ -38,6 +38,7 @@ if (Meteor.isClient) {
 
   Template.body.events({
     "submit .test": function (event) {
+      Router.go('/')
       Session.setPersistent('firstSearchName', true);
       console.log(Session.get('firstSearchName'));
       event.preventDefault();
@@ -67,6 +68,7 @@ if (Meteor.isClient) {
     },
     "click .newSearch": function(){
       Session.setPersistent('firstTime', true);
+      Router.go('/')
     }
   });
 }

@@ -14,16 +14,8 @@ if (Meteor.isClient) {
     });
 
 
-    Template.money.rendered = function(){
-      var entityType = Session.get('entityType');
-      var percentTotal = Session.get('percentTotal');
-      var entityMoney = Session.get('entityMoney');
-      var divTotal = Session.get('divTotal');
-
-      for(i = 0; i<entityType.length; i++){
-      $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' '+ percentTotal[i]+'% <span class = "rightSide right"> '+entityMoney[i]+'</span> </div>');
-      $('body').append('<style> .bar'+i+'::after{max-width:'+divTotal[i]+'%}</style>')
-    }
+    Template.contact.rendered = function(){
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'"http"':'"https"';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
 }
 }

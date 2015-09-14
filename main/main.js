@@ -36,7 +36,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.main.onRendered=function(){
+  Template.main.rendered=function(){
     $('.name').append("<button class =theseCards id = "+district+"> <div class=card blue-grey darken-1 id = "+district+"><div class=card-content id = "+district+"><div id = "+district+"><h4  id = "+district+">"+firstName+" "+lastName+ " ("+party+")</h4> </div></div></div> </button>");
 }
 }

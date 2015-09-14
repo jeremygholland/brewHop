@@ -35,12 +35,14 @@ if (Meteor.isClient) {
       return Session.get('resultsStuff');
     }
   });
-
+  Template.searchFirst.rendered= function(){
+      Session.setPersistent('showTwit', false);
+      console.log(Session.get('showTwit'));
+  };
   Template.body.events({
     "submit .test": function (event) {
       Router.go('/')
       Session.setPersistent('firstSearchName', true);
-      console.log(Session.get('firstSearchName'));
       event.preventDefault();
       var search = event.target.test.value;
       // increment the counter when button is clicked
@@ -69,7 +71,7 @@ if (Meteor.isClient) {
     "click .newSearch": function(){
       Session.setPersistent('firstTime', true);
       Router.go('/')
-    }
+    },
   });
 }
 

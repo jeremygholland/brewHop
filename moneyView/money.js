@@ -16,7 +16,8 @@ if (Meteor.isClient) {
       var percentTotal = Session.get('percentTotal');
       var entityMoney = Session.get('entityMoney');
       var divTotal = Session.get('divTotal');
-      
+      Session.setPersistent('showTwit', false);
+
       for(i = 0; i<entityType.length; i++){
       $('.graph-cont').append('<div class = "bar bar'+i+'">'+entityType[i]+' '+ percentTotal[i]+'% <span class = "rightSide right"> '+entityMoney[i]+'</span> </div>');
       $('body').append('<style> .bar'+i+'::after{max-width:'+divTotal[i]+'%}</style>')
